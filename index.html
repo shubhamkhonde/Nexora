@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic QR Attendance - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="landing-bg">
+    <div class="hero-container">
+        
+        <h1>Dynamic QR Attendance System</h1>
+        <p class="tagline">Fast. Secure. Proxy-free attendance.</p>
+        
+        <div class="login-options">
+            <button class="btn btn-primary" onclick="openLogin('teacher')">Login as Teacher</button>
+            <br><br>
+            <button class="btn btn-secondary" onclick="openLogin('student')">Login as Student</button>
+        </div>
+    </div>
+
+    <div id="login-overlay" class="overlay hidden">
+        <div class="login-modal">
+            <h2 id="login-title">Login</h2>
+            <p id="role-text" style="color: #666; margin-bottom: 15px;"></p>
+            <form onsubmit="handleAuth(event)">
+                <input type="email" id="email" placeholder="Email (e.g. prof@college.edu)" required class="auth-input">
+                <input type="password" id="password" placeholder="Password" required class="auth-input">
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button type="button" class="btn btn-danger" onclick="closeLogin()" style="width: 40%;">Cancel</button>
+                    <button type="submit" class="btn btn-primary" style="width: 60%;">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentTarget = "";
+
+        function openLogin(role) {
+            currentTarget = role;
+            document.getElementById('login-title').innerText = (role === 'teacher' ? "Teacher" : "Student") + " Login";
+            document.getElementById('role-text').innerText = "Please enter your credentials to proceed.";
+            document.getElementById('login-overlay').classList.remove('hidden');
+        }
+
+        function closeLogin() {
+            document.getElementById('login-overlay').classList.add('hidden');
+        }
+
+        function handleAuth(event) {
+            event.preventDefault();
+            // In a real app, you'd verify credentials here. 
+            // For the prototype, we redirect based on the role.
+            if (currentTarget === 'teacher') {
+                window.location.href = "teacher.html";
+            } else {
+                window.location.href = "student.html";
+            }
+        }
+    </script>
+</body>
+</html>
