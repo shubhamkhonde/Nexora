@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="student-container">
+        <header class="student-header">
+            <h2>Hello, Sonii</h2> <a href="index.html" class="logout-btn">Logout</a> </header>
+
+        <div class="student-grid">
+            <div class="student-card" onclick="alert('Opening Camera for 2-3 seconds...')">
+                <div class="card-icon">📷</div>
+                <h4>Scan QR</h4> </div>
+
+            <div class="student-card" onclick="document.getElementById('my-stats').classList.toggle('hidden')">
+                <div class="card-icon">📊</div>
+                <h4>My Attendance</h4> </div>
+        </div>
+
+        <div id="my-stats" class="stats-detail hidden">
+            <h3>Subject-wise Tracker</h3> <p>Total Classes Attended: 35</p> <div class="warning-box">⚠️ Warning: Attendance low in Mathematics!</div> </div>
+    </div>
+</body>
+</html>
