@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-layout">
+        <nav class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li onclick="showModule('start-qr')">Start Attendance</li> <li onclick="showModule('view-list')">View Attendance</li> <li onclick="showModule('analysis')">Attendance Analysis</li> <li><a href="index.html" class="logout-link">Logout</a></li> </ul>
+        </nav>
+
+        <main class="main-content">
+            <header>
+           
+                <h2 class="sir">Good Morning, Prof. XYZ</h2> </header>
+          
+            <section id="start-qr" class="module">
+                <h3>Start Attendance Module</h3> <div class="form-group">
+                    <label>Class:</label> <select><option>TE - CS-A</option></select>
+                    <label>Subject:</label> <select><option>Data Structures</option></select>
+                    <button class="btn btn-primary" onclick="startLiveQR()">Start Attendance</button> </div>
+
+                <div id="qr-container" class="hidden">
+                    <div class="timer">Next Refresh: <span id="clock">5</span>s</div> <div class="qr-placeholder">
+                        <img id="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=v1" alt="Dynamic QR"> </div>
+                    <p class="qr-note">QR refreshes every 5 seconds</p> <button class="btn btn-danger" onclick="location.reload()">Stop Attendance</button> </div>
+            </section>
+
+            <section id="view-list" class="module hidden">
+                <h3>Attendance Records</h3> <table class="data-table">
+                    <thead>
+                        <tr><th>Roll No</th><th>Name</th><th>Status</th></tr> </thead>
+                    <tbody>
+                        <tr><td>101</td><td>Sonii</td><td><span class="p-pill">Present</span></td></tr>
+                        <tr><td>102</td><td>Rahul</td><td><span class="a-pill">Absent</span></td></tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-secondary">Download Report</button> </section>
+
+            <section id="analysis" class="module hidden">
+                <h3>Attendance Analysis</h3> <div class="stats-row">
+                    <div class="stat-card"><h5>Total Classes</h5><p>42</p></div> <div class="stat-card critical"><h5>Below 75%</h5><p>8 Students</p></div> </div>
+                <div class="analysis-chart">
+                    <p>Subject-wise Summary: <strong>88%</strong></p> <div class="bar-bg"><div class="bar-fill" style="width: 88%;"></div></div> </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        function showModule(id) {
+            document.querySelectorAll('.module').forEach(m => m.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function startLiveQR() {
+            document.getElementById('qr-container').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
